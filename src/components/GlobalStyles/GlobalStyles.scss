@@ -34,7 +34,7 @@ input,
     border: none;
 }
 
-a[href] {
-    color: #ccc;
+a {
+    color: var(--text);
     text-decoration: none;
 }

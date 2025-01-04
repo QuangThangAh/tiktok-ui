@@ -1,5 +1,9 @@
 import {
+    faCircleQuestion,
     faCircleXmark,
+    faEarthAsia,
+    faEllipsisVertical,
+    faKeyboard,
     faMagnifyingGlass,
     faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
@@ -13,11 +17,27 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import styles from "./Header.module.scss";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
+import Menu from "~/components/Popper/Menu";
 
 const cx = classNames.bind(styles);
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
 
+    const MENU_ITEMS = [
+        {
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: "VietNamese",
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+            title: "Feedback and Help",
+            to: "/feedback",
+        },
+        {
+            icon: <FontAwesomeIcon icon={faKeyboard} />,
+            title: "Keyboard Shotcut",
+        },
+    ];
     useEffect(() => {}, []);
     return (
         <header className={cx("wrapper")}>
@@ -62,10 +82,15 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx("action")}>
-                    <Button rounded>Upload</Button>
-                    <Button primary rounded className={cx("custom")}>
+                    <Button text>Upload</Button>
+                    <Button primary rounded to="/" className={cx("custom")}>
                         Log in
                     </Button>
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx("more-btn")}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
